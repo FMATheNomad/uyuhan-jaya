@@ -3,7 +3,7 @@ from fastapi.responses import Response
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
-from app.core.dependencies import get_current_user, require_roles
+from app.core.dependencies import get_current_user, require_roles, check_ai_limit
 from app.models.user import User, UserRole
 from app.schemas import AIGenerateRequest
 from app.services.ai_service import generate_rab_ai, generate_rab_excel, analyze_progress_with_ai, predict_cashflow
@@ -15,7 +15,7 @@ router = APIRouter(prefix="/api/v1/ai", tags=["ai"])
 @router.post("/rab")
 async def ai_generate_rab(
     data: AIGenerateRequest,
-    current_user: User = Depends(require_roles([UserRole.owner, UserRole.contractor])),
+    current_user: User = Depends(check_ai_limit),
 ):
     result = await generate_rab_ai(data.prompt)
     return result
@@ -24,7 +24,7 @@ async def ai_generate_rab(
 @router.post("/rab-excel")
 async def ai_download_rab_excel_from_data(
     data: dict = Body(...),
-    current_user: User = Depends(require_roles([UserRole.owner, UserRole.contractor])),
+    current_user: User = Depends(check_ai_limit),
 ):
     try:
         excel_bytes = await generate_rab_excel(data)
@@ -42,7 +42,7 @@ async def ai_download_rab_excel_from_data(
 async def ai_analyze_project(
     project_id: str,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(require_roles([UserRole.owner, UserRole.contractor])),
+    current_user: User = Depends(check_ai_limit),
 ):
     dashboard = await get_project_dashboard(db, project_id)
     if not dashboard:
@@ -55,7 +55,7 @@ async def ai_analyze_project(
 async def ai_predict_cashflow(
     project_id: str,
     db: AsyncSession = Depends(get_db),
-    current_user: User = Depends(require_roles([UserRole.owner, UserRole.contractor])),
+    current_user: User = Depends(check_ai_limit),
 ):
     dashboard = await get_project_dashboard(db, project_id)
     if not dashboard:

@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     refresh_token_expire_days: int = 30
 
     deepseek_api_key: Optional[str] = None
-    deepseek_model: str = "deepseek-chat"
+    deepseek_model: str = "deepseek-v4-flash"
 
     openrouter_api_key: Optional[str] = None
     openrouter_model: str = "nvidia/nemotron-nano-9b-v2:free"

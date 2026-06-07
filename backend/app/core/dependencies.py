@@ -1,3 +1,4 @@
+from datetime import date
 from typing import List
 
 from fastapi import Depends, HTTPException, Request, status
@@ -6,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
 from app.core.security import decode_token
-from app.models.user import User, UserRole
+from app.models.user import User, UserRole, AI_DAILY_LIMIT
 
 
 async def get_current_user(
@@ -62,3 +63,23 @@ def require_roles(roles: List[UserRole]):
             )
         return current_user
     return role_checker
+
+
+async def check_ai_limit(
+    current_user: User = Depends(get_current_user),
+) -> User:
+    today = date.today()
+    if current_user.ai_daily_date != today:
+        current_user.ai_daily_count = 0
+        current_user.ai_daily_date = today
+    if current_user.ai_daily_count >= AI_DAILY_LIMIT:
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail={
+                "error": "Batas AI harian tercapai",
+                "limit": AI_DAILY_LIMIT,
+                "message": f"Kamu udah pake {AI_DAILY_LIMIT}x AI hari ini. Coba lagi besok.",
+            },
+        )
+    current_user.ai_daily_count += 1
+    return current_user
