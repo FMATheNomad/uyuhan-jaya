@@ -7,3 +7,7 @@ __pycache__/
 pgdata/
 *.egg-info/
 .venv/
+whatsapp-service/auth/
+*.log
+/tmp/
+
