@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 from fastapi import FastAPI, Request
+from sqlalchemy import text
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -83,6 +84,18 @@ async def startup():
     settings.check_secret()
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+        if "postgresql" in settings.async_database_url:
+            await conn.execute(text("""
+                DO $$ BEGIN
+                    IF NOT EXISTS (
+                        SELECT 1 FROM information_schema.columns
+                        WHERE table_name='users' AND column_name='ai_daily_count'
+                    ) THEN
+                        ALTER TABLE users ADD COLUMN ai_daily_count INTEGER DEFAULT 0;
+                        ALTER TABLE users ADD COLUMN ai_daily_date DATE;
+                    END IF;
+                END $$;
+            """))
 
     async with async_session_factory() as db:
         from sqlalchemy import select
