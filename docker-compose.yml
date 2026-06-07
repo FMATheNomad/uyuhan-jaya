@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: uyuhan
+      POSTGRES_PASSWORD: uyuhan_secret
+      POSTGRES_DB: uyuhan
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U uyuhan"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file: ./backend/.env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://uyuhan:uyuhan_secret@db:5432/uyuhan
+      ENV: production
+      CORS_ORIGINS: https://uyuhan.com
+      FRONTEND_URL: https://uyuhan.com
+      BACKEND_URL: https://uyuhan.com
+    volumes:
+      - uyuhan_data:/app/data
+      - uyuhan_uploads:/app/uploads
+      - uyuhan_wa_auth:/app/whatsapp-service/auth
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  uyuhan_data:
+  uyuhan_uploads:
+  uyuhan_wa_auth:
