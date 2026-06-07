@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://uyuhanjaya.up.railway.app/sitemap.xml

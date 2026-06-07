@@ -213,6 +213,14 @@ async def startup():
             print("✅ Demo data seeded: admin, projects, attendances, materials, progress")
 
 
+@app.get("/robots.txt")
+async def robots():
+    return FileResponse(str(BASE_DIR / "static" / "robots.txt"))
+
+@app.get("/sitemap.xml")
+async def sitemap():
+    return FileResponse(str(BASE_DIR / "static" / "sitemap.xml"))
+
 @app.get("/favicon.svg")
 async def favicon():
     return FileResponse(str(STATIC_DIR / "favicon.svg")) if STATIC_DIR.exists() else JSONResponse(status_code=404, content={"detail": "Not found"})

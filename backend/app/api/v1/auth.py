@@ -12,17 +12,21 @@ router = APIRouter(prefix="/api/v1/auth", tags=["auth"])
 
 @router.post("/register", response_model=TokenResponse)
 async def register(data: UserCreate, db: AsyncSession = Depends(get_db)):
+    if len(data.password) < 6:
+        raise HTTPException(status_code=400, detail="Password minimal 6 karakter")
+    if len(data.name.strip()) < 2:
+        raise HTTPException(status_code=400, detail="Nama minimal 2 karakter")
     existing = await db.execute(select(User).where(User.email == data.email))
     if existing.scalar_one_or_none():
-        raise HTTPException(status_code=400, detail="Email already registered")
+        raise HTTPException(status_code=400, detail="Email sudah terdaftar")
 
     import uuid
     from datetime import datetime, timezone
 
     user = User(
         id=str(uuid.uuid4()),
-        name=data.name,
-        email=data.email,
+        name=data.name.strip(),
+        email=data.email.lower().strip(),
         phone=data.phone,
         hashed_password=hash_password(data.password),
         role=UserRole(data.role) if data.role in [r.value for r in UserRole] else UserRole.contractor,

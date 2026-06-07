@@ -15,8 +15,10 @@ export default function DashboardPage() {
   const isMandor = role === 'mandor'
   const [projects, setProjects] = useState<Project[]>([])
   const [reports, setReports] = useState<Record<string, Report>>({})
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    setLoading(true)
     api.get('/projects').then(async ({ data: projs }) => {
       setProjects(projs)
       const reps: Record<string, Report> = {}
@@ -27,8 +29,15 @@ export default function DashboardPage() {
         } catch {}
       }
       setReports(reps)
-    })
+    }).finally(() => setLoading(false))
   }, [])
+
+  if (loading) return (
+    <div className="flex items-center justify-center py-20">
+      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-green-600 mr-3" />
+      <span className="text-gray-400">Memuat dashboard...</span>
+    </div>
+  )
 
   return (
     <div className="space-y-6">
