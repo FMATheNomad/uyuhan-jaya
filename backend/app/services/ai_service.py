@@ -6,8 +6,8 @@ from app.core.config import settings
 
 
 async def call_ai(messages: list[dict], model: str = None) -> str:
-    api_key = settings.openrouter_api_key or settings.deepseek_api_key
-    model = model or settings.openrouter_model or settings.deepseek_model
+    api_key = settings.deepseek_api_key or settings.openrouter_api_key
+    model = model or settings.deepseek_model or settings.openrouter_model
     base_url = settings.ai_base_url
 
     if not api_key:
@@ -23,7 +23,7 @@ async def call_ai(messages: list[dict], model: str = None) -> str:
         headers["HTTP-Referer"] = "https://uyuhanjaya.up.railway.app"
         headers["X-Title"] = "Uyuhan Jaya"
 
-    async with httpx.AsyncClient(timeout=90.0) as client:
+    async with httpx.AsyncClient(timeout=60.0) as client:
         response = await client.post(
             f"{base_url}/chat/completions",
             headers=headers,
