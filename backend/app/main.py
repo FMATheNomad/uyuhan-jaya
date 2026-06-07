@@ -43,7 +43,7 @@ app.include_router(reports.router)
 app.include_router(qr_code.router)
 app.include_router(whatsapp.router)
 
-STATIC_DIR = Path(__file__).parent.parent.parent / "frontend" / "dist"
+STATIC_DIR = Path(__file__).parent.parent / "frontend" / "dist"
 BASE_DIR = Path(__file__).parent.parent
 UPLOAD_DIR = BASE_DIR / "uploads"
 if UPLOAD_DIR.exists():
