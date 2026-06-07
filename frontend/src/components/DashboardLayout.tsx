@@ -39,6 +39,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       `}>
         <div className="p-4 border-b">
           <Link to="/dashboard" className="text-lg font-bold text-green-700">Uyuhan Jaya</Link>
+          <p className="text-xs text-gray-400">by FMA Software Labs</p>
         </div>
         <nav className="p-3 space-y-1">
           {items.map((item) => (

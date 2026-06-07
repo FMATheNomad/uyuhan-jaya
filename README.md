@@ -208,7 +208,9 @@ MIT License — lihat [LICENSE](LICENSE) untuk detail.
 ---
 
 <p align="center">
-  Dibuat dengan ❤️ oleh <a href="https://github.com/fariz">Fariz</a> untuk kontraktor Indonesia.
+  © 2026 <strong>FMA Software Labs</strong> — All rights reserved.
+  <br />
+  Dibangun oleh <a href="https://github.com/FMATheNomad">FMATheNomad</a> untuk kontraktor Indonesia.
   <br />
   <em>"Uyuhan..." — Paman</em>
 </p>

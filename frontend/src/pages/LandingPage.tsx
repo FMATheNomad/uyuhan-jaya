@@ -213,7 +213,9 @@ export default function LandingPage() {
       <footer className="bg-gray-900 text-gray-400 py-10">
         <div className="max-w-6xl mx-auto px-4 text-center text-sm">
           <p className="text-white font-bold text-lg mb-1">Uyuhan Jaya</p>
-          <p>© {new Date().getFullYear()} — Untuk kontraktor Indonesia</p>
+          <p className="text-green-400 text-xs mb-3">by FMA Software Labs</p>
+          <p>© {new Date().getFullYear()} FMA Software Labs. All rights reserved.</p>
+          <p className="text-xs mt-1">Untuk kontraktor Indonesia</p>
           <div className="flex items-center justify-center gap-4 mt-4">
             <Link to="/login" className="hover:text-white">Masuk</Link>
             <Link to="/register" className="hover:text-white">Daftar</Link>
