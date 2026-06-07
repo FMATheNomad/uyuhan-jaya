@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     deepseek_model: str = "deepseek-chat"
 
     openrouter_api_key: Optional[str] = None
-    openrouter_model: str = "mistralai/mistral-nemo:free"
+    openrouter_model: str = "nvidia/nemotron-nano-9b-v2:free"
     ai_base_url: str = "https://api.deepseek.com/v1"
 
     env: str = "development"
