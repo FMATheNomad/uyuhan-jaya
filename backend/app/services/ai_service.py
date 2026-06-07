@@ -5,21 +5,28 @@ from typing import AsyncGenerator, Optional
 from app.core.config import settings
 
 
-async def call_deepseek(messages: list[dict], model: str = None) -> str:
-    model = model or settings.deepseek_model
-    api_key = settings.deepseek_api_key
+async def call_ai(messages: list[dict], model: str = None) -> str:
+    api_key = settings.openrouter_api_key or settings.deepseek_api_key
+    model = model or settings.openrouter_model or settings.deepseek_model
+    base_url = settings.ai_base_url
+
     if not api_key:
-        return "DeepSeek API key not configured."
+        return "AI API key not configured."
 
     import httpx
 
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+    if "openrouter" in base_url:
+        headers["HTTP-Referer"] = "https://uyuhanjaya.up.railway.app"
+        headers["X-Title"] = "Uyuhan Jaya"
+
     async with httpx.AsyncClient(timeout=90.0) as client:
         response = await client.post(
-            "https://api.deepseek.com/v1/chat/completions",
-            headers={
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-            },
+            f"{base_url}/chat/completions",
+            headers=headers,
             json={
                 "model": model,
                 "messages": messages,
@@ -91,7 +98,7 @@ Output dalam format JSON sesuai instruksi sebelumnya."""
         {"role": "user", "content": prompt},
     ]
     
-    result = await call_deepseek(messages)
+    result = await call_ai(messages)
     
     try:
         json_match = re.search(r'\{.*\}', result, re.DOTALL)
@@ -285,7 +292,7 @@ Gunakan bahasa Indonesia."""
         {"role": "system", "content": "Anda adalah konsultan manajemen konstruksi."},
         {"role": "user", "content": prompt},
     ]
-    return await call_deepseek(messages)
+    return await call_ai(messages)
 
 
 async def predict_cashflow(project_data: dict) -> str:
@@ -302,4 +309,4 @@ Gunakan bahasa Indonesia."""
         {"role": "system", "content": "Anda adalah financial analyst spesialis konstruksi."},
         {"role": "user", "content": prompt},
     ]
-    return await call_deepseek(messages)
+    return await call_ai(messages)
