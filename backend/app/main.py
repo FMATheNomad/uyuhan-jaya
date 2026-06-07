@@ -198,6 +198,11 @@ async def startup():
             print("✅ Demo data seeded: admin, projects, attendances, materials, progress")
 
 
+@app.get("/favicon.svg")
+async def favicon():
+    return FileResponse(str(STATIC_DIR / "favicon.svg")) if STATIC_DIR.exists() else JSONResponse(status_code=404, content={"detail": "Not found"})
+
+
 @app.get("/health")
 async def health_check():
     return {"status": "healthy", "version": "0.1.0", "project": "Uyuhan Jaya"}
