@@ -60,15 +60,7 @@ export default function WhatsAppPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/dashboard" className="text-xl font-bold text-green-700">Uyuhan Jaya</Link>
-          <span className="text-sm text-gray-500">{user?.name}</span>
-        </div>
-      </header>
-
-      <main className="max-w-4xl mx-auto px-4 py-8">
+    <div className="space-y-6">
         <h2 className="text-2xl font-semibold mb-2">WhatsApp Integration</h2>
         <p className="text-gray-500 mb-6">Notifikasi otomatis ke WhatsApp setiap ada absensi & update progres</p>
 
@@ -147,7 +139,6 @@ export default function WhatsAppPage() {
         )}
 
         {loading && <p className="text-center text-gray-400 py-8">Loading...</p>}
-      </main>
     </div>
   )
 }

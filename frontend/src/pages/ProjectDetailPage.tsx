@@ -30,18 +30,7 @@ export default function ProjectDetailPage() {
   if (!report) return <div className="p-8 text-center text-gray-400">Loading...</div>
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/dashboard" className="text-xl font-bold text-green-700">Uyuhan Jaya</Link>
-          <div className="flex gap-3">
-            {isOwnerOrKontraktor && <Link to="/rab" className="text-sm text-purple-600 hover:text-purple-800">RAB AI</Link>}
-            <Link to="/projects" className="text-sm text-gray-500 hover:text-gray-700">Proyek</Link>
-          </div>
-        </div>
-      </header>
-
-      <main className="max-w-6xl mx-auto px-4 py-6">
+    <div className="space-y-6">
         <div className="flex items-center justify-between mb-2">
           <h2 className="text-2xl font-semibold">{report.project_name}</h2>
           <img
@@ -88,8 +77,7 @@ export default function ProjectDetailPage() {
         {tab === 'materials' && <MaterialsTab projectId={id!} />}
         {tab === 'progress' && <ProgressTab projectId={id!} />}
         {tab === 'rab' && <RABTab projectId={id!} />}
-      </main>
-    </div>
+      </div>
   )
 }
 

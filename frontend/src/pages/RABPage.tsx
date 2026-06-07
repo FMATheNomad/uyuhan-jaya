@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useAuthStore } from '@/stores/auth'
+import { useAuthStore, ROLE_LABELS } from '@/stores/auth'
 import api from '@/services/api'
 
 interface RABItem {
@@ -123,15 +123,7 @@ export default function RABPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/dashboard" className="text-xl font-bold text-green-700">Uyuhan Jaya</Link>
-          <span className="text-sm text-gray-500">{user?.name}</span>
-        </div>
-      </header>
-
-      <main className="max-w-6xl mx-auto px-4 py-8">
+    <div className="space-y-6">
         <h2 className="text-2xl font-semibold mb-2">RAB AI Generator</h2>
         <p className="text-gray-500 mb-6">Deskripsikan proyek konstruksi kamu, AI akan menyusun RAB otomatis dalam bentuk tabel + export Excel</p>
 
@@ -181,7 +173,6 @@ export default function RABPage() {
             <RABTable data={rabData} />
           </div>
         )}
-      </main>
     </div>
   )
 }
