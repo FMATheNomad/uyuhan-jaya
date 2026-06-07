@@ -13,7 +13,7 @@ export default function LoginPage() {
     e.preventDefault()
     try {
       await login(email, password)
-      navigate('/')
+      navigate('/dashboard')
     } catch {
       setError('Email atau password salah')
     }

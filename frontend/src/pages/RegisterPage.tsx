@@ -14,7 +14,7 @@ export default function RegisterPage() {
     e.preventDefault()
     try {
       await register(name, email, password)
-      navigate('/')
+      navigate('/dashboard')
     } catch {
       setError('Gagal daftar, coba lagi')
     }

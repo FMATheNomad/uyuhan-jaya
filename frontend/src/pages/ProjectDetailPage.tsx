@@ -33,7 +33,7 @@ export default function ProjectDetailPage() {
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="text-xl font-bold text-green-700">Uyuhan Jaya</Link>
+          <Link to="/dashboard" className="text-xl font-bold text-green-700">Uyuhan Jaya</Link>
           <div className="flex gap-3">
             {isOwnerOrKontraktor && <Link to="/rab" className="text-sm text-purple-600 hover:text-purple-800">RAB AI</Link>}
             <Link to="/projects" className="text-sm text-gray-500 hover:text-gray-700">Proyek</Link>

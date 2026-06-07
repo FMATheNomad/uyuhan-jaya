@@ -19,7 +19,7 @@ export default function DashboardPage() {
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <Link to="/" className="text-xl font-bold text-green-700">Uyuhan Jaya</Link>
+            <Link to="/dashboard" className="text-xl font-bold text-green-700">Uyuhan Jaya</Link>
             {user?.role !== 'mandor' && <Link to="/rab" className="text-sm text-purple-600 hover:text-purple-800">RAB AI</Link>}
             {user?.role === 'owner' && <Link to="/whatsapp" className="text-sm text-green-600 hover:text-green-800">WhatsApp</Link>}
           </div>
