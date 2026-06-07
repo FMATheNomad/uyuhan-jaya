@@ -37,4 +37,4 @@ RUN mkdir -p /app/uploads/general /app/uploads/attendance /app/uploads/progress 
 
 EXPOSE 8000
 
-CMD uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000} & node /app/whatsapp-service/index.js & wait
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000} & node /app/whatsapp-service/index.js & wait"]

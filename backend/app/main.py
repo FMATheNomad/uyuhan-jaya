@@ -50,7 +50,6 @@ if UPLOAD_DIR.exists():
     app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 if STATIC_DIR.exists():
     app.mount("/assets", StaticFiles(directory=str(STATIC_DIR / "assets")), name="assets")
-    app.mount("/", StaticFiles(directory=str(STATIC_DIR), html=True), name="static")
 
 
 @app.exception_handler(401)
@@ -66,6 +65,10 @@ async def forbidden_handler(request: Request, exc: Exception):
 
 @app.exception_handler(404)
 async def not_found_handler(request: Request, exc: Exception):
+    if STATIC_DIR.exists() and not request.url.path.startswith("/api/"):
+        path = str(STATIC_DIR / request.url.path.lstrip("/"))
+        if (STATIC_DIR / "index.html").exists():
+            return FileResponse(str(STATIC_DIR / "index.html"))
     detail = getattr(exc, "detail", "Not found")
     return JSONResponse(status_code=404, content={"detail": detail})
 
