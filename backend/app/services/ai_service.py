@@ -20,8 +20,8 @@ async def call_ai(messages: list[dict], model: str = None) -> str:
         "Content-Type": "application/json",
     }
     if "openrouter" in base_url:
-        headers["HTTP-Referer"] = "https://uyuhanjaya.up.railway.app"
-        headers["X-Title"] = "Uyuhan Jaya"
+        headers["HTTP-Referer"] = "https://minicrane.up.railway.app"
+        headers["X-Title"] = "MiniCrane"
 
     async with httpx.AsyncClient(timeout=60.0) as client:
         response = await client.post(

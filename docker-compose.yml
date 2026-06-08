@@ -4,15 +4,15 @@ services:
   db:
     image: postgres:16-alpine
     environment:
-      POSTGRES_USER: uyuhan
-      POSTGRES_PASSWORD: uyuhan_secret
-      POSTGRES_DB: uyuhan
+      POSTGRES_USER: minicrane
+      POSTGRES_PASSWORD: minicrane_secret
+      POSTGRES_DB: minicrane
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U uyuhan"]
+      test: ["CMD-SHELL", "pg_isready -U minicrane"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -23,21 +23,21 @@ services:
       - "8000:8000"
     env_file: ./backend/.env
     environment:
-      DATABASE_URL: postgresql+asyncpg://uyuhan:uyuhan_secret@db:5432/uyuhan
+      DATABASE_URL: postgresql+asyncpg://minicrane:minicrane_secret@db:5432/minicrane
       ENV: production
-      CORS_ORIGINS: https://uyuhan.com
-      FRONTEND_URL: https://uyuhan.com
-      BACKEND_URL: https://uyuhan.com
+      CORS_ORIGINS: https://minicrane.com
+      FRONTEND_URL: https://minicrane.com
+      BACKEND_URL: https://minicrane.com
     volumes:
-      - uyuhan_data:/app/data
-      - uyuhan_uploads:/app/uploads
-      - uyuhan_wa_auth:/app/whatsapp-service/auth
+      - minicrane_data:/app/data
+      - minicrane_uploads:/app/uploads
+      - minicrane_wa_auth:/app/whatsapp-service/auth
     depends_on:
       db:
         condition: service_healthy
 
 volumes:
   pgdata:
-  uyuhan_data:
-  uyuhan_uploads:
-  uyuhan_wa_auth:
+  minicrane_data:
+  minicrane_uploads:
+  minicrane_wa_auth:

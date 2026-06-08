@@ -18,7 +18,7 @@ from app.models.material import MaterialLog
 from app.models.progress import ProgressPhoto
 
 app = FastAPI(
-    title="Uyuhan Jaya API",
+    title="MiniCrane API",
     description="Construction project management for Indonesian contractors",
     version="0.1.0",
     docs_url="/docs" if os.getenv("ENV") != "production" else None,
@@ -107,7 +107,7 @@ async def startup():
             admin_id = str(uuid.uuid4())
             admin = User(
                 id=admin_id,
-                name="Uyuhan Jaya Corp",
+                name="MiniCrane Corp",
                 email="admin@uyuhan.com",
                 hashed_password=hash_password("uyuhan123"),
                 role=UserRole.owner,
@@ -228,4 +228,4 @@ async def favicon():
 
 @app.get("/health")
 async def health_check():
-    return {"status": "healthy", "version": "0.1.0", "project": "Uyuhan Jaya"}
+    return {"status": "healthy", "version": "0.1.0", "project": "MiniCrane"}

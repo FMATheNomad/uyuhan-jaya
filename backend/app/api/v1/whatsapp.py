@@ -91,7 +91,7 @@ async def wa_test(
     phone = _format_phone(to) if to else (current_user.whatsapp_phone or "")
     if not phone:
         raise HTTPException(status_code=400, detail="No WhatsApp number set")
-    ok = await wa_send_message(phone, "🔧 *Uyuhan Jaya*\n\nNotifikasi WhatsApp berfungsi! 🎉")
+    ok = await wa_send_message(phone, "🔧 *MiniCrane*\n\nNotifikasi WhatsApp berfungsi! 🎉")
     if not ok:
         raise HTTPException(status_code=502, detail="WhatsApp service unavailable")
     return {"success": True, "sent_to": phone}
@@ -132,7 +132,7 @@ async def whatsapp_webhook(data: dict, db: AsyncSession = Depends(get_db)):
 
     user = await _get_user_by_phone(phone, db)
     if not user:
-        await _send_reply(phone, "Maaf, nomor ini belum terdaftar di Uyuhan Jaya. Hubungi admin.")
+        await _send_reply(phone, "Maaf, nomor ini belum terdaftar di MiniCrane. Hubungi admin.")
         return {"status": "ok", "reply": "user_not_found"}
 
     import uuid

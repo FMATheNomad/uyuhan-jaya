@@ -15,7 +15,7 @@ async def project_qr(
     project_id: str,
     current_user: User = Depends(get_current_user),
 ):
-    checkin_url = f"https://uyuhan.app/absen/{project_id}"
+    checkin_url = f"https://minicrane.app/absen/{project_id}"
     
     qr = qrcode.QRCode(box_size=10, border=4)
     qr.add_data(checkin_url)

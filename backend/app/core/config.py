@@ -11,7 +11,7 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    database_url: str = "sqlite+aiosqlite:///./uyuhan.db"
+    database_url: str = "sqlite+aiosqlite:///./minicrane.db"
     secret_key: str = "change-me-in-production"
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30

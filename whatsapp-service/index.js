@@ -32,7 +32,7 @@ async function startSock() {
     auth: state,
     logger,
     printQRInTerminal: false,
-    browser: ['Uyuhan Jaya', 'Chrome', '1.0.0'],
+    browser: ['MiniCrane', 'Chrome', '1.0.0'],
     syncFullHistory: false,
   });
 

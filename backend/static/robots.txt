@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://uyuhanjaya.up.railway.app/sitemap.xml
+Sitemap: https://minicrane.up.railway.app/sitemap.xml

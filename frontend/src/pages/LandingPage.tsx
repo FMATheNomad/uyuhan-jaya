@@ -22,7 +22,7 @@ export default function LandingPage() {
       {/* Header */}
       <header className="bg-white/90 backdrop-blur-sm border-b sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="text-lg font-bold text-green-700">Uyuhan Jaya</div>
+          <div className="text-lg font-bold text-green-700">MiniCrane</div>
           <div className="flex items-center gap-3">
             <Link to="/login" className="px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900">Masuk</Link>
             <Link to="/register" className="px-4 py-1.5 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium">
@@ -49,7 +49,7 @@ export default function LandingPage() {
               <span className="text-green-300">Dari WhatsApp</span>
             </h1>
             <p className="text-lg text-green-100/80 max-w-xl mb-8 leading-relaxed">
-              Uyuhan Jaya bantu kontraktor Indonesia manajemen proyek — dari absensi tukang, 
+              MiniCrane bantu kontraktor Indonesia manajemen proyek — dari absensi tukang, 
               material, progres, sampai RAB — semuanya bisa lewat WhatsApp + Dashboard Web.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -212,14 +212,14 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-400 py-10">
         <div className="max-w-6xl mx-auto px-4 text-center text-sm">
-          <p className="text-white font-bold text-lg mb-1">Uyuhan Jaya</p>
+          <p className="text-white font-bold text-lg mb-1">MiniCrane</p>
           <p className="text-green-400 text-xs mb-3">by FMA Software Labs</p>
           <p>© {new Date().getFullYear()} FMA Software Labs. All rights reserved.</p>
           <p className="text-xs mt-1">Untuk kontraktor Indonesia</p>
           <div className="flex items-center justify-center gap-4 mt-4">
             <Link to="/login" className="hover:text-white">Masuk</Link>
             <Link to="/register" className="hover:text-white">Daftar</Link>
-            <a href="https://github.com/FMATheNomad/uyuhan-jaya" target="_blank" rel="noopener noreferrer" className="hover:text-white">GitHub</a>
+            <a href="https://github.com/FMATheNomad/minicrane" target="_blank" rel="noopener noreferrer" className="hover:text-white">GitHub</a>
           </div>
         </div>
       </footer>

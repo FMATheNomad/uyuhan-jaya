@@ -1,6 +1,6 @@
 <p align="center">
   <img src="frontend/public/favicon.svg" width="80" />
-  <h1 align="center">Uyuhan Jaya</h1>
+  <h1 align="center">MiniCrane</h1>
   <p align="center">Manajemen Proyek Konstruksi untuk Kontraktor Indonesia</p>
   <p align="center">
     <strong>🏗️ WhatsApp-first · AI-powered · Open Source</strong>
@@ -98,8 +98,8 @@ Setelah login, langsung ada:
 
 ```bash
 # 1. Clone repo
-git clone https://github.com/fariz/uyuhan-jaya.git
-cd uyuhan-jaya
+git clone https://github.com/fariz/minicrane.git
+cd minicrane
 
 # 2. Backend
 cd backend

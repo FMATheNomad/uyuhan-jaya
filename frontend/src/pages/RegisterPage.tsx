@@ -30,7 +30,7 @@ export default function RegisterPage() {
 
       <div className="w-full max-w-md relative">
         <div className="text-center mb-8">
-          <Link to="/" className="text-3xl font-bold text-white">Uyuhan Jaya</Link>
+          <Link to="/" className="text-3xl font-bold text-white">MiniCrane</Link>
           <p className="text-green-200/60 text-sm mt-1">by FMA Software Labs</p>
         </div>
 
